@@ -205,7 +205,7 @@
               "aria-disabled": optgp.disabled ? "true" : null,
               "class":optgp.inputClass
             });
-            var expand = $("<img/>").addClass("a-multiselect-expandcollpase-optgroup").attr("href","#").attr("alt","-").addClass('multiselect-optgroup-minus');
+            var expand = $("<div/>").addClass("a-multiselect-expandcollpase-optgroup").attr("href","#").attr("alt","-").addClass('multiselect-optgroup-minus');
             $groupLabel.append(expand);
             var $parentItem = o.optGroupCheckbox ? $groupLabel.append($input).append($link) : $groupLabel.append($link) ;
             p.push($parentItem);
