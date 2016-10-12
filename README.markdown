@@ -2,8 +2,11 @@
 
 MultiSelect progessively enhances an ordinary multiple select control into elegant drop down list of checkboxes, stylable with ThemeRoller.  
 
-jquery-ui-multiselect to have checkbox for parent (optgroup) and enable treeview.
-Made optgroup searchable or only optgroup searchable.
+Features:
+Option group checkbox,treeview,search optgroup,search only optgroup.
+
+Added optgroup checkbox and treeview which can be set via settings.
+Includes search ability for optgroup along with option or only optgroup.
 
 ![Example](https://github.com/ballavamsi/jquery-ui-multiselect-widget/blob/master/Sample.PNG)
 
