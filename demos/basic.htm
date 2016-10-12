@@ -14,43 +14,26 @@
     <script type="text/javascript" src="../src/jquery.multiselect.filter.js"></script>
 <script type="text/javascript">
 $(function(){
-	$("select").multiselect({optGroupCheckbox : true}).multiselectfilter();
+    $("#select1").multiselect().multiselectfilter();
+	$("#select2").multiselect({optGroupCheckbox : true}).multiselectfilter();
+    $("#select3").multiselect({optGroupCheckbox : true,treeView:true}).multiselectfilter();
+    $("#select4").multiselect({treeView:true}).multiselectfilter();
+    $("#select5").multiselect({optGroupCheckbox:true,treeView:true}).multiselectfilter({onlyOptGroupSearchable:true}); 
+    $("#select6").multiselect({optGroupCheckbox:true,treeView:true}).multiselectfilter({optGroupSearchable:true}); 
 });
 </script>
 </head>
 <body id="test" onload="prettyPrint();">
 
-<!--<h2>Basic Demos</h2>
-
-<p>Both multiselects are created with the following one-liner.  Optgroup support is built in out of the box:</p>
+<h2>Basic Demos</h2>
+<h3>Basic Without Option Group Checkbox</h3>
 <pre class="prettyprint">
 $(function(){
-   $("select").multiselect({}).multiselectfilter(); 
+   $("#select1").multiselect().multiselectfilter(); 
 });
 </pre>
-
-<h3>Basic</h3>
 <p>
-	<!--<select title="Basic example" multiple="multiple" name="example-basic" size="5">
-	<option value="option1">Option 1</option>
-	<option value="option2">Option 2</option>
-	<option value="option3">Option 3</option>
-	<option value="option4">Option 4</option>
-	<option value="option5">Option 5</option>
-	<option value="option6">Option 6</option>
-	<option value="option7">Option 7</option>
-	<option value="option8">Option 8</option>
-	<option value="option9">Option 9</option>
-	<option value="option10">Option 10</option>
-	<option value="option11">Option 11</option>
-	<option value="option12">Option 12</option>
-	</select>
-</p>
-
-<h3>With Optgroups</h3>
-<p>Click on an optgroup's heading to toggle the checked state of the entire group.</p>-->
-<p>
-	<select name="example-optgroup" multiple="multiple" size="5">
+	<select id="select1" name="example-optgroup" multiple="multiple" size="5">
 	<optgroup selected label="Group One">
 		<option value="option1" selected>Option 1</option>
 		<option value="option2">Option 2</option>
@@ -64,6 +47,128 @@ $(function(){
 	</optgroup>
 	</select>
 </p>
+    
+<h3>Basic With Option Group Checkbox</h3>
+<p>Both multiselects are created with the following one-liner.  Optgroup support is built in out of the box:</p>
+<pre class="prettyprint">
+$(function(){
+   $("#select2").multiselect({optGroupCheckbox : true}).multiselectfilter(); 
+});
+</pre>
+<p>
+	<select id="select2" name="example-optgroup" multiple="multiple" size="5">
+	<optgroup selected label="Group One">
+		<option value="option1" selected>Option 1</option>
+		<option value="option2">Option 2</option>
+		<option value="option3">Option 3</option>
+	</optgroup>
+	<optgroup label="Group Two">
+		<option value="option4">Option 4</option>
+		<option value="option5">Option 5</option>
+		<option value="option6">Option 6</option>
+		<option value="option7">Option 7</option>
+	</optgroup>
+	</select>
+</p>
+<hr/>
+    
+<h3>Basic With Option Group Checkbox and Treeview</h3>
+<p>Both multiselects are created with the following one-liner.  Optgroup support is built in out of the box:</p>
+<pre class="prettyprint">
+$(function(){
+$("#select3").multiselect({optGroupCheckbox : true,treeView:true}).multiselectfilter(); 
+});
+</pre>
+<p>
+<select id="select3" name="example-optgroup" multiple="multiple" size="5">
+<optgroup selected label="Group One">
+    <option value="option1" selected>Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+</optgroup>
+<optgroup label="Group Two">
+    <option value="option4">Option 4</option>
+    <option value="option5">Option 5</option>
+    <option value="option6">Option 6</option>
+    <option value="option7">Option 7</option>
+</optgroup>
+</select>
+</p>
+<hr/>
+  
+<h3>Basic with only treeview</h3>
+<p>Both multiselects are created with the following one-liner.  Optgroup support is built in out of the box:</p>
+<pre class="prettyprint">
+$(function(){
+$("#select4").multiselect({treeView:true}).multiselectfilter(); 
+});
+</pre>
 
+<p>
+<select id="select4" name="example-optgroup" multiple="multiple" size="5">
+<optgroup selected label="Group One">
+    <option value="option1" selected>Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+</optgroup>
+<optgroup label="Group Two">
+    <option value="option4">Option 4</option>
+    <option value="option5">Option 5</option>
+    <option value="option6">Option 6</option>
+    <option value="option7">Option 7</option>
+</optgroup>
+</select>
+</p>
+<hr/>
+    
+<br/>
+<h3>Search filter only Parent</h3>
+<p>Both multiselects are created with the following one-liner.  Optgroup support is built in out of the box:</p>
+<pre class="prettyprint">
+$(function(){
+$("#select5").multiselect({optGroupCheckbox:true,treeView:true}).multiselectfilter({onlyOptGroupSearchable:true}); 
+});
+</pre>
+
+<p>
+<select id="select5" name="example-optgroup" multiple="multiple" size="5">
+<optgroup selected label="Group One">
+    <option value="option1" selected>Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+</optgroup>
+<optgroup label="Group Two">
+    <option value="option4">Option 4</option>
+    <option value="option5">Option 5</option>
+    <option value="option6">Option 6</option>
+    <option value="option7">Option 7</option>
+</optgroup>
+</select>
+</p>
+<hr/>
+<h3>Include Parent and Child search</h3>
+<p>Both multiselects are created with the following one-liner.  Optgroup support is built in out of the box:</p>
+<pre class="prettyprint">
+$(function(){
+$("#select6").multiselect({optGroupCheckbox:true,treeView:true}).multiselectfilter({optGroupSearchable:true}); 
+});
+</pre>
+
+<p>
+<select id="select6" name="example-optgroup" multiple="multiple" size="5">
+<optgroup selected label="Group One">
+    <option value="option1" selected>Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+</optgroup>
+<optgroup label="Group Two">
+    <option value="option4">Option 4</option>
+    <option value="option5">Option 5</option>
+    <option value="option6">Option 6</option>
+    <option value="option7">Option 7</option>
+</optgroup>
+</select>
+</p>
+<hr/>
 </body>
 </html>
