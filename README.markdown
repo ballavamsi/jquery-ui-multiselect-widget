@@ -2,7 +2,7 @@
 
 MultiSelect progessively enhances an ordinary multiple select control into elegant drop down list of checkboxes, stylable with ThemeRoller.  
 
-![Example](http://www.erichynds.com/examples/jquery-multiselect/screenshot-widget.gif)
+![Example](https://github.com/ballavamsi/jquery-ui-multiselect-widget/blob/master/Sample.PNG)
 
 # License
 

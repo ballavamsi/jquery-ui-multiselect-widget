@@ -44,6 +44,7 @@
       position: {},
       appendTo: "body",
       optGroupCheckbox : false,
+      treeView: false,
       menuWidth:null,
       selectedListSeparator: ', '
     },
@@ -206,7 +207,7 @@
               "class":optgp.inputClass
             });
             var expand = $("<div/>").addClass("a-multiselect-expandcollpase-optgroup").attr("href","#").attr("alt","-").addClass('multiselect-optgroup-minus');
-            $groupLabel.append(expand);
+            $groupLabel.append(o.treeView?expand:"");
             var $parentItem = o.optGroupCheckbox ? $groupLabel.append($input).append($link) : $groupLabel.append($link) ;
             p.push($parentItem);
             return $parentItem;
