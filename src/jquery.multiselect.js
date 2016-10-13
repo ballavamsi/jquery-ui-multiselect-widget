@@ -48,6 +48,7 @@
       optGroupCheckbox : false,
       treeView: false,
       treeViewCollapseOnLoad:false,
+      treeViewHeader: false,
       menuWidth:null,
       selectedListSeparator: ', '
     },
@@ -126,7 +127,10 @@
       if(!this.options.multiple) {
         this.headerLinkContainer.find('.ui-multiselect-all, .ui-multiselect-none').hide();
       }
-      if(!this.options.treeView) {
+      if(this.options.treeViewHeader && this.options.treeView) {
+          this.headerLinkContainer.find('.ui-multiselect-expandall, .ui-multiselect-collapseall').show();
+      }
+      else{
           this.headerLinkContainer.find('.ui-multiselect-expandall, .ui-multiselect-collapseall').hide();
       }
       if(this.options.autoOpen) {
@@ -226,10 +230,10 @@
         } else {
           this.headerLinkContainer.find('.ui-multiselect-all, .ui-multiselect-none').show();
         }
-        if(!this.options.treeView) {
-          this.headerLinkContainer.find('.ui-multiselect-expandall, .ui-multiselect-collpaseall').hide();
-        } else {
+        if(this.options.treeViewHeader && this.options.treeView) {
           this.headerLinkContainer.find('.ui-multiselect-expandall, .ui-multiselect-collpaseall').show();
+        } else {
+          this.headerLinkContainer.find('.ui-multiselect-expandall, .ui-multiselect-collpaseall').hide();
         }
       }
 
