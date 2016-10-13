@@ -205,8 +205,6 @@
                 return this.localName == "optgroup"? $(this).attr("label").toLowerCase(): this.innerHTML.toLowerCase();
         }).get();
       }).get();
-        
-        console.log(this.cache);
     },
 
     widget: function() {
