@@ -363,8 +363,6 @@
           var $show = ($this.attr("alt") == "+" || $this.hasClass("multiselect-optgroup-plus")) ? true : false;
           $inputs.each(function(d){
               var du = $(this);
-              console.log(du);
-              console.log($show);
               if($show)
               {
                   du.parent().parent().removeClass("multiselect-options-hide-away");
