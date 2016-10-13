@@ -20,6 +20,7 @@ $(function(){
     $("#select4").multiselect({treeView:true}).multiselectfilter();
     $("#select5").multiselect({optGroupCheckbox:true,treeView:true}).multiselectfilter({onlyOptGroupSearchable:true}); 
     $("#select6").multiselect({optGroupCheckbox:true,treeView:true}).multiselectfilter({optGroupSearchable:true}); 
+    $("#select10").multiselect({treeView:true,treeViewCollapseOnLoad:true}).multiselectfilter(); 
 });
 </script>
 </head>
@@ -120,6 +121,29 @@ $("#select4").multiselect({treeView:true}).multiselectfilter();
 </select>
 </p>
 <hr/>
+<h3>Collapse Treeview</h3>
+<pre class="prettyprint">
+$(function(){
+$("#select10").multiselect({treeView:true,treeViewCollapseOnLoad:true}).multiselectfilter(); 
+});
+</pre>
+
+<p>
+<select id="select10" name="example-optgroup" multiple="multiple" size="5">
+<optgroup selected label="Group One">
+    <option value="option1" selected>Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+</optgroup>
+<optgroup label="Group Two">
+    <option value="option4">Option 4</option>
+    <option value="option5">Option 5</option>
+    <option value="option6">Option 6</option>
+    <option value="option7">Option 7</option>
+</optgroup>
+</select>
+</p>
+<hr/>    
     
 <br/>
 <h3>Search filter only Parent</h3>
