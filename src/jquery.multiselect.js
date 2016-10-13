@@ -33,6 +33,8 @@
       classes: '',
       checkAllText: 'Check all',
       uncheckAllText: 'Uncheck all',
+      expandAllText: 'Expand All',
+      collapseAllText: 'Collapse All',
       noneSelectedText: 'Select options',
       selectedText: '# selected',
       selectedList: 0,
@@ -45,6 +47,7 @@
       appendTo: "body",
       optGroupCheckbox : false,
       treeView: false,
+      treeViewCollapseOnLoad:false,
       menuWidth:null,
       selectedListSeparator: ', '
     },
@@ -85,7 +88,8 @@
           .addClass('ui-helper-reset')
           .html(function() {
             if(o.header === true) {
-              return '<li><a class="ui-multiselect-all" href="#"><span class="ui-icon ui-icon-check"></span><span>' + o.checkAllText + '</span></a></li><li><a class="ui-multiselect-none" href="#"><span class="ui-icon ui-icon-closethick"></span><span>' + o.uncheckAllText + '</span></a></li>';
+              return '<li><a class="ui-multiselect-all" href="#"><span class="ui-icon ui-icon-check"></span><span>' + o.checkAllText + '</span></a></li><li><a class="ui-multiselect-none" href="#"><span class="ui-icon ui-icon-closethick"></span><span>' + o.uncheckAllText + '</span></a></li>'+
+                 '<li><a class="ui-multiselect-expandall" href="#"><span>' + o.expandAllText + '</span></a></li><li><a class="ui-multiselect-collapseall" href="#"></span><span>' + o.collapseAllText + '</span></a></li>';
             } else if(typeof o.header === "string") {
               return '<li>' + o.header + '</li>';
             } else {
@@ -104,7 +108,7 @@
 
         // build menu
         this.refresh(true);
-
+        
         // some addl. logic for single selects
         if(!o.multiple) {
           menu.addClass('ui-multiselect-single');
@@ -121,6 +125,9 @@
       }
       if(!this.options.multiple) {
         this.headerLinkContainer.find('.ui-multiselect-all, .ui-multiselect-none').hide();
+      }
+      if(!this.options.treeView) {
+          this.headerLinkContainer.find('.ui-multiselect-expandall, .ui-multiselect-collapseall').hide();
       }
       if(this.options.autoOpen) {
         this.open();
@@ -219,6 +226,11 @@
         } else {
           this.headerLinkContainer.find('.ui-multiselect-all, .ui-multiselect-none').show();
         }
+        if(!this.options.treeView) {
+          this.headerLinkContainer.find('.ui-multiselect-expandall, .ui-multiselect-collpaseall').hide();
+        } else {
+          this.headerLinkContainer.find('.ui-multiselect-expandall, .ui-multiselect-collpaseall').show();
+        }
       }
 
       //Turn all the options and optiongroups into list items
@@ -248,7 +260,12 @@
       // set widths
       this._setButtonWidth();
       this._setMenuWidth();
-
+      if(o.treeView && o.treeViewCollapseOnLoad)
+      {
+            $(this.menu.find(".a-multiselect-expandcollpase-optgroup")).each(function(){
+                $(this).click();
+            });
+      }
       // remember default value
       this.button[0].defaultValue = this.update();
 
@@ -346,7 +363,10 @@
 
           // check all / uncheck all
         } else {
-          self[$(this).hasClass('ui-multiselect-all') ? 'checkAll' : 'uncheckAll']();
+            if($(this).hasClass('ui-multiselect-all') || $(this).hasClass('ui-multiselect-none'))
+                self[$(this).hasClass('ui-multiselect-all') ? 'checkAll' : 'uncheckAll']();
+            if($(this).hasClass('ui-multiselect-expandall') || $(this).hasClass('ui-multiselect-collapseall'))
+                self[$(this).hasClass('ui-multiselect-expandall') ? 'expandAll' : 'collapseAll']();
         }
 
         e.preventDefault();
@@ -639,26 +659,7 @@
                     }
                 });
         }
-    },
-      //This is not required but after test this function can be removed
-      //{remove}
-    _updateExpandCollapse:function()      
-      {
-          var $optgroups = this.menu.find(".ui-multiselect-checkboxes").find("li"),self = this;
-            //Looping for all optgroups to update the values
-            $optgroups.each(function () {
-                var $this = $(this);
-                if($this.hasClass("ui-multiselect-optgroup-label"))
-                    {
-                        var $optgroupInputs = $this.nextUntil('li.ui-multiselect-optgroup-label'),
-                        inputCount = $optgroupInputs.length,
-                        hiddenCount = $optgroupInputs.filter('.multiselect-options-hide-away').length
-                        optGroupInput = $this.find('input');
-                        optGroupInput.attr("alt",hiddenCount == inputCount ? "+":"-");
-                        optGroupInput.addClass(hiddenCount == inputCount ? 'multiselect-optgroup-plus' : 'multiselect-optgroup-minus').removeClass(hiddenCount == inputCount ? 'multiselect-optgroup-minus' : 'multiselect-optgroup-plus');
-                    }
-                });
-      }
+    }
     ,_toggleDisabled: function(flag) {
       this.button.prop({ 'disabled':flag, 'aria-disabled':flag })[ flag ? 'addClass' : 'removeClass' ]('ui-state-disabled');
 
@@ -777,7 +778,25 @@
       this._toggleChecked(false);
       this._trigger('uncheckAll');
     },
-
+    expandAll: function() {
+        this._expandTreeView(true);
+    },
+    collapseAll: function() {
+        this._expandTreeView(false);
+    },
+    _expandTreeView: function($show){
+        var $this = this.menu;
+          var $expandBtn = $this.find(".a-multiselect-expandcollpase-optgroup");
+          $expandBtn.each(function(d){
+              var du = $(this);
+              //+ means they are collapsed
+              var cu = du.attr("alt") == "+" ? true : false;
+              if(cu == $show)
+              {
+                  du.click();
+              }
+          });  
+    },    
     getChecked: function() {
       return this.menu.find('input').filter(':checked');
     },
