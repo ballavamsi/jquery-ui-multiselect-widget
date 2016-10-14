@@ -735,6 +735,8 @@
 
       button.addClass('ui-state-active');
       this._isOpen = true;
+      if(o.treeView && o.treeViewCollapseOnLoad)
+          this.collapseAll();
       this._trigger('open');
     },
 
