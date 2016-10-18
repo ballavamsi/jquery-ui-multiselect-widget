@@ -23,7 +23,8 @@
 .ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a:hover{color:cornflowerblue;}
 .ui-multiselect-checkboxes li:not(.ui-multiselect-optgroup-label) {margin-left:9%;}
 .multiselect-options-hide-away {opacity:0;left:-1000px;height: 0px;width:0px;position:absolute;}
-
+.input-ui-multiselect-optgrp:checked + a {color:orange!important}
+.input-ui-multiselect-optgrp:indeterminate + a {color:orange!important}
 .a-multiselect-expandcollpase-optgroup
 {
 	text-decoration: none;
