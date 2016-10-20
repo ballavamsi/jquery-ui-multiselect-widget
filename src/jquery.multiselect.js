@@ -77,7 +77,7 @@
           .appendTo(button),
 
         menu = (this.menu = $('<div />'))
-          .addClass('ui-multiselect-menu ui-widget ui-widget-content ui-corner-all')
+          .addClass('ui-multiselect-menu ui-widget ui-widget-content ui-corner-all' + (o.optGroupCheckbox ? ' ui-multiselect-hasparentcheckbox': ''))
           .addClass(o.classes)
           .appendTo($(o.appendTo)),
 
@@ -256,7 +256,8 @@
 
       this.menu.find(".ui-multiselect-checkboxes").remove();
       this.menu.append($dropdown);
-
+      if (o.optGroupCheckbox && !this.menu.hasClass("ui-multiselect-hasparentcheckbox"))
+          this.menu.addClass("ui-multiselect-hasparentcheckbox");
       // cache some moar useful elements
       this.labels = menu.find('label');
       this.inputs = this.labels.children('input');
